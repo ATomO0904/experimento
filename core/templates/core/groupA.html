@@ -1,0 +1,11 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<p> hola, {{ user.username }}</p>
+<div id="groupA" hx-ext="ws" ws-connect="/ws/control/group_A">
+    <h1>Group A</h1>
+    <p>Group A is the best group.</p>
+    {% include "core/partials/quiz.html" %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "registration/base.html" %}
+{% block title %}login{% endblock title %}
+{% block action %}Inicia sesion{% endblock action %}
+{% block url %}{% url 'login' %}{% endblock url %}
+{% block content %}
+        <div class="input-group mb-3">
+            {{ form.username }}
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-user"></span>
+                </div>
+            </div>
+        </div>
+        <div class="input-group mb-3">
+            {{ form.password }}
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-lock"></span>
+                </div>
+            </div>
+        </div>
+        <p>No tienes cuenta? <a href="{% url 'signup' %}">Registrate</a></p>
+{% endblock content %}

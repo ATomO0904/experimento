@@ -1,0 +1,18 @@
+<div id="quiz-group-A" hx-swap-oob="outerHTML">
+    
+    <p>{{ group }}</p>
+    <p>{{ count}} </p>
+    <p>{{ question }}</p>
+    {% for answer in answers %}
+    <form hx-post="{% url 'start-quiz' %}" hx-target="#quiz-group-A" ws-send="answer-quiz" 
+    hx-vals='{"group": "A",
+     "question": "{{count}}",
+     "answer": "{{ answer }}",
+     "user": "{{ user}}"}'>
+        {% csrf_token %}
+        <button type="submit">{{ answer }}</button>
+    </form>
+    {% endfor %}
+    {% include 'core/partials/user_answer_A.html' %}
+
+</div>

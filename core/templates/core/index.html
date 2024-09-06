@@ -1,0 +1,23 @@
+{% extends "core/base.html" %}
+{% block content %}
+
+    {% if user.is_authenticated %}
+        <p>Bienvenido {{ user.username }}</p>
+        <a href="{% url 'groupA' %}">Group A</a>
+        <a href="{% url 'groupB' %}">Group B</a>   
+
+
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button class="btn-primary" type="submit">Cerrar sesion</button>
+            {% if user.is_staff %}
+                <a href="{% url 'admin:index' %}">Admin</a>
+                <a href="{% url 'control' %}">Control</a>
+            {% endif %}
+        <!-- Formulario para enviar JSON a Spring Boot -->
+   {% else %}
+        <p>Usuario no autenticado</p>
+        <a href="{% url 'login' %}">Inicia sesion</a>
+        <a href="{% url 'signup' %}">Crear cuenta</a>
+    {% endif %}
+{% endblock %}

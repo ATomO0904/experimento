@@ -1,0 +1,9 @@
+<div id="user-answers">
+    <h3>Respuestas de los usuarios</h3>
+    <ul>
+        {% for user, answer in fake_user_answer.items %}
+            <li hx-swap-oob="outerHTML"
+            ><strong>{{ user }}:</strong> {{ answer }}</li>
+        {% endfor %}
+    </ul>
+</div>

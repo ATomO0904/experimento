@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+
+
+{% block content %}
+<div id="control" hx-ext="ws" ws-connect="/ws/control/group_A">
+    <p>Welcome to control</p>
+    {% include 'core/partials/online_users.html' %}
+    <a href="{% url 'index' %}">Volver</a>
+    <div id="form-container">
+        <form hx-post="{% url 'start-quiz' %}" hx-target="#form-container" ws-send="start-quiz"
+        hx-vals='{"group": "A"}'>
+            {% csrf_token %}
+            <button type="submit" 
+            _="on click set #new-element's style.display to 'block' then set #form-container's style.display to 'none'">Start Quiz</button>
+        </form>
+    </div>
+    <div id="new-element" style="display: none;">
+        {% include 'core/partials/user_answer_control.html' %}
+    </div>
+</div>
+{% endblock %}

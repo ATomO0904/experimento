@@ -1,0 +1,37 @@
+<div id="user-answers-2">
+    <h3>Respuestas de los usuarios para manipular</h3>
+    {%for user, answer in user_answer.items %}
+    <form hx-post="{% url 'start-quiz' %}"
+     hx-target="#user-answers-2" 
+     ws-send="answer-quiz" 
+     hx-vals='{"control":"True","group": "A","user": "{{user}}"}'>
+        {% csrf_token %}
+            <button type="submit" >{{ user }}</button>
+            <p>resta: {{ answer }}</p>
+    </form>
+    {% endfor %}
+</div>
+<button type="button" hx-trigger="click" _="
+    on click
+    set forms to <form/> in #user-answers-2
+    for form in forms
+        set jsonObj to JSON.parse(form.getAttribute('hx-vals'))
+        set jsonObj.answer to 'acido'
+        form.setAttribute('hx-vals', JSON.stringify(jsonObj))
+        trigger htmx:beforeRequest on form
+        log form
+    end">Acido</button>
+<button type="button" hx-trigger="click" _="
+    on click
+    set forms to <form/> in #user-answers-2
+    for form in forms
+        set jsonObj to JSON.parse(form.getAttribute('hx-vals'))
+        set jsonObj.answer to 'dulce'
+        form.setAttribute('hx-vals', JSON.stringify(jsonObj))
+        trigger htmx:beforeRequest on form
+        log form
+    end">Dulce</button>
+
+
+
+</div>
