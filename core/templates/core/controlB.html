@@ -1,7 +1,7 @@
 {% extends 'core/base.html' %}
 {% block content %}
 
-<div id="control" hx-ext="ws" ws-connect="/ws/control/groupA" class="container mt-5">
+<div id="control" hx-ext="ws" ws-connect="/ws/normal/groupB" class="container mt-5">
     <div class="card">
         <div class="card-header">
             <h3 class="card-title">Control Panel</h3>
@@ -11,7 +11,7 @@
             <p class="card-text">Welcome to control</p>
             <a href="{% url 'index' %}" class="btn btn-secondary mb-3">Volver</a>
             <a href="{% url 'results' %}" class="btn btn-secondary mb-3">Ver resultados previos</a>
-            <a href="{% url 'controlB' %}" class="btn btn-secondary mb-3">Ir a control B</a>
+            <a href="{% url 'control' %}" class="btn btn-secondary mb-3">Ir a control A</a>
             <div id="form-container">
                 <form hx-post="{% url 'start-quiz' %}" hx-target="#form-container" ws-send="start-quiz"
                 hx-vals='{"group": "A"}'>
@@ -23,7 +23,7 @@
                 {% include 'core/partials/online_users.html' %}
             </div>
             <div id="new-element" style="display: none;">
-                {% include 'core/partials/control_panel.html' %}
+                {% include 'core/partials/control_panelB.html' %}
             </div>
         </div>
     </div>

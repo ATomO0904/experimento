@@ -1,8 +1,8 @@
 <div id="user-answers">
     <h3>Respuestas de los ususarios</h3>
     <ul>
-        {% for u, answer in fake_user_answer.items %}
-            {% if u != request.username %}
+        {% for u, answer in user_answer.items %}
+            {% if u != request.username and answer %}
                 <li>{{ u }}: {{ answer }}</li>
             {% endif %}
         {% endfor %}

@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core', # Agrega la aplicación core a la lista de aplicaciones instaladas
     'django_htmx',
+    'django_extensions',
+    'django_tables2',
 ]
 
 MIDDLEWARE = [

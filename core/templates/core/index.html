@@ -1,23 +1,40 @@
 {% extends "core/base.html" %}
 {% block content %}
-
+<div class="container mt-5">
     {% if user.is_authenticated %}
-        <p>Bienvenido {{ user.username }}</p>
-        <a href="{% url 'groupA' %}">Group A</a>
-        <a href="{% url 'groupB' %}">Group B</a>   
-
-
+        <div class="alert alert-success" role="alert">
+            <p>Bienvenido, <strong>{{ user.username }}</strong></p>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6 mb-2">
+                <a href="{% url 'groupA' %}" class="btn btn-primary btn-lg btn-block">Group A</a>
+            </div>
+            <div class="col-md-6 mb-2">
+                <a href="{% url 'groupB' %}" class="btn btn-primary btn-lg btn-block">Group B</a>
+            </div>
+        </div>
         <form method="post" action="{% url 'logout' %}">
             {% csrf_token %}
-            <button class="btn-primary" type="submit">Cerrar sesion</button>
-            {% if user.is_staff %}
-                <a href="{% url 'admin:index' %}">Admin</a>
-                <a href="{% url 'control' %}">Control</a>
-            {% endif %}
-        <!-- Formulario para enviar JSON a Spring Boot -->
-   {% else %}
-        <p>Usuario no autenticado</p>
-        <a href="{% url 'login' %}">Inicia sesion</a>
-        <a href="{% url 'signup' %}">Crear cuenta</a>
+            <button class="btn btn-danger btn-lg btn-block" type="submit">Cerrar sesión</button>
+        </form>
+        {% if user.is_staff %}
+            <div class="row mt-3">
+                <div class="col-md-6 mb-2">
+                    <a href="{% url 'admin:index' %}" class="btn btn-secondary btn-lg btn-block">Admin</a>
+                </div>
+                <div class="col-md-6 mb-2">
+                    <a href="{% url 'control' %}" class="btn btn-secondary btn-lg btn-block">Control</a>
+                </div>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            <p>Usuario no autenticado</p>
+        </div>
+        <div class="btn-group" role="group" aria-label="Auth Links">
+            <a href="{% url 'login' %}" class="btn btn-primary">Inicia sesión</a>
+            <a href="{% url 'signup' %}" class="btn btn-primary">Crear cuenta</a>
+        </div>
     {% endif %}
+</div>
 {% endblock %}

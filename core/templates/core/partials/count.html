@@ -1,0 +1,35 @@
+<div id="count" hx-swap="outerHTML" class="container mt-5">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Countdown Timer</h3>
+        </div>
+        <div class="card-body">
+            <span class="badge badge-primary">{{ count }}</span>
+            {% if count >= 0 %}
+                <h1 class="mt-3">Time Remaining</h1>
+                <div id="time" class="display-4">
+                    <span id="time-span"
+                          _="on load
+                             set x to 10
+                             repeat while x > 0
+                                wait 1s
+                                set x to x - 1 then
+                                put x into me
+                             end
+                             put 'Time is up' into me
+                             trigger click on #time-out
+                            "
+                    >10</span>
+                </div>
+                {% csrf_token %}
+                <div id="time-out" hx-post ws-send hx-trigger="click" hx-vals='{"time": "out"}'
+                     _="on click halt the event"
+                     style="display: none;"
+                >Time is up</div>
+            {% else %}
+                <h1 class="mt-3">Time is up</h1>
+                <a href="{% url 'results' %}" class="btn btn-secondary mt-3">View Results</a>
+            {% endif %}
+        </div>
+    </div>
+</div>

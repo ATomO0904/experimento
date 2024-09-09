@@ -1,4 +1,12 @@
-<span id="online-count" hx-swap-oob="outerHTML">
-    {{ online_count }}
-    {{users}}
-</span> users online   
+<div id="online-count" hx-swap-oob="outerHTML">
+    <h5>users online</h5>
+    <ul class="list-group mt-3">
+        {% for user in users %}
+            <li class="list-group-item d-flex align-items-center justify-content-between">
+                <i class="bi bi-person-circle me-4" style="font-size: 3rem;"></i>
+                <span style="font-size: 3rem">{{ user.username }}</span>
+                <span class="badge bg-primary rounded-pill">{{group }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+</div>
